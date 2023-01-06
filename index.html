@@ -1,16 +1,52 @@
 <html>
   <head>
     <title>IG test</title>
-    <script></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <button
-      onclick="
-            window.open('/page2.html', 'promptLogin', 'toolbar=no, menubar=1, resizable=1, width=600, height=700, top=100, left=100');
-            "
-    >
-      click me
-    </button>
+    <p id="test"></p>
+    <button>click me</button>
     <noscript> No Javascript : ( </noscript>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        // document.querySelector("#test").innerHTML = window.location.href;
+        document.querySelector("#test").innerHTML = navigator.userAgent;
+
+        document.querySelector("button").addEventListener("click", () => {
+          window.alert("Button clicked");
+
+          try {
+            const newPopup = window.open(
+              "/page2.html",
+              "_self",
+              "toolbar=no, menubar=1, resizable=1, width=600, height=700, top=100, left=100"
+            );
+            window.alert("1");
+
+            // const scriptElement = newPopup.document.createElement("script");
+            // window.alert("2");
+            // scriptElement.type = "text/javascript";
+            // window.alert("3");
+            // scriptElement.appendChild(
+            //   newPopup.document.createTextNode(`
+            //   window.alert("popup loaded");
+            //   window.close();
+            // // history.back();
+            // `)
+            // );
+            // window.alert("4");
+
+            // newPopup.document.body.append(scriptElement);
+            // window.alert("5");
+
+            // newPopup.focus();
+            // window.alert("6");
+          } catch (error) {
+            window.alert(`error? ${JSON.stringify({ error })}`);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
